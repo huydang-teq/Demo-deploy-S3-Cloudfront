@@ -111,6 +111,8 @@ const ViteInspiredAnimation = () => {
         Vite + React
       </h1>
 
+      <h2 className="text-[#FFFFFF]">{import.meta.env.VITE_ENV}</h2>
+
       <p className="text-gray-300 max-w-md text-center mb-6">
         Next Generation Frontend Tooling
       </p>
