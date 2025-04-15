@@ -45,7 +45,7 @@ const ViteInspiredAnimation = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 p-4">
-      <h2>test okta dev</h2>
+      <h2 className="text-white">workflow success</h2>
       <div className="mb-8 relative">
         <svg
           width="180"
