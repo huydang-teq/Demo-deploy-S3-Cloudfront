@@ -3,8 +3,8 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 
 on:
   push:
-    tags:
-      - dev-*
+    branches:
+      - main
 
 permissions:
   id-token: write
