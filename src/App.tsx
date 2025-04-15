@@ -23,8 +23,29 @@ const ViteInspiredAnimation = () => {
     return () => clearInterval(pulseInterval);
   }, []);
 
+  useEffect(() => {
+    const getOktaUser = async () => {
+      const resp = await fetch("https://dev-65882879.okta.com/api/v1/users", {
+        method: "GET",
+        headers: {
+          Authorization: "SSWS 00yV94qA7yNzWt9jDyaDWD_q8i4digoYTqckKauDn0",
+        },
+      });
+
+      try {
+        const data = await resp.text();
+        console.log(data);
+      } catch (e) {
+        console.log("e:::: ", e);
+      }
+    };
+
+    getOktaUser();
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 p-4">
+      <h2>test okta dev</h2>
       <div className="mb-8 relative">
         <svg
           width="180"
