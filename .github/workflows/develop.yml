@@ -6,10 +6,15 @@ on:
     tags:
       - dev-*
 
+permissions:
+  id-token: write
+  contents: read
 
 env:
-  CF_DIST_ID: 'E1RZJG16DXGMN1'
-  S3_BUCKET: 's3://f1nn-dev-dev-web-8l8fhi'
+  CF_DIST_ID: 'EVED8FYT1CNCZ'
+  S3_BUCKET: 's3://seminar-aws-s3-cloudfront-bucket'
+  AWS_IAM: '583388259455'
+  AWS_DEFAULT_REGION: 'ap-northeast-1'
   BUILD_MODE: "dev"
       
 
