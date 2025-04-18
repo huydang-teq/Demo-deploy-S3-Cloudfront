@@ -3,8 +3,8 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'dev-*'
 
 permissions:
   id-token: write
@@ -16,7 +16,8 @@ env:
   AWS_IAM: '583388259455'
   AWS_DEFAULT_REGION: 'ap-northeast-1'
   BUILD_MODE: "dev"
-      
+  MATTERMOST_WEBHOOK_URL: "https://chat.teqnological.asia/hooks/7g7nycmbmt8q987wu4ykj3trke"
+
 
 jobs:
   build:
@@ -35,4 +36,40 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/deploy
+
+  notify:
+    needs: [ build, deploy ]
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Notify Mattermost on success
+        uses: mattermost/action-mattermost-notify@master
+        with:
+          MATTERMOST_WEBHOOK_URL: ${{ env.MATTERMOST_WEBHOOK_URL }}
+          PAYLOAD: |
+            {
+              "attachments": [
+                {
+                  "color": "#00FF00",
+                  "title": "Deployment succeeded",
+                  "text": "Deployment succeeded",
+                }
+              ]
+            }
+      - name: Notify Mattermost on failure
+        continue-on-error: true
+        uses: mattermost/action-mattermost-notify@master
+        with:
+          MATTERMOST_WEBHOOK_URL: ${{ env.MATTERMOST_WEBHOOK_URL }}
+          PAYLOAD: |
+            {
+              "attachments": [
+                {
+                  "color": "#FF0000",
+                  "title": "Deployment failed",
+                  "text": "Deployment failed",
+                }
+              ]
+            }
 
