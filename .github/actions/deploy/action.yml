@@ -36,7 +36,7 @@ runs:
     - name: Uploading files
       shell: bash
       run: |
-        aws s3 sync --delete dist ${{env.S3_BUCKET}} --cache-control max-age=60,s-maxage=60
+        aws s3 sync --delete dist ${{env.S3_BUCKET}} --cache-control max-age=360,s-maxage=360
     - name: Delete cf cache
       shell: bash
       run: |
