@@ -13,6 +13,8 @@ function ImageWithPlaceholder({
 }: ImageWithPlaceholderProps) {
   const [loaded, setLoaded] = useState(false);
 
+  console.log(import.meta.env.VITE_ENV)
+
   return (
     <div className={`${className} bg-gray-200 relative`}>
       <img
