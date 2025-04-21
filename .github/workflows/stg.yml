@@ -12,9 +12,7 @@ on:
           - minor
           - major
 
-permissions:
-  id-token: write
-  contents: write
+permissions: write-all
 
 env:
   CF_DIST_ID: ""
