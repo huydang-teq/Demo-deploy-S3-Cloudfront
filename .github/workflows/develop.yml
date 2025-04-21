@@ -40,7 +40,7 @@ jobs:
     needs: [build, deploy]
     timeout-minutes: 5
     runs-on: ubuntu-latest
-    if: always()
+    if: ${{ !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled') }}
     steps:
       - name: Notify Mattermost on success
         uses: mattermost/action-mattermost-notify@master
@@ -57,6 +57,7 @@ jobs:
               ]
             }
       - name: Notify Mattermost on failure
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
         continue-on-error: true
         uses: mattermost/action-mattermost-notify@master
         with:
