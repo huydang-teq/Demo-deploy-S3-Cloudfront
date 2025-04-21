@@ -12,7 +12,6 @@ function ImageWithPlaceholder({
   className,
 }: ImageWithPlaceholderProps) {
   const [loaded, setLoaded] = useState(false);
-  console.log(import.meta.env.VITE_ENV);
 
   return (
     <div className={`${className} bg-gray-200 relative`}>
@@ -112,7 +111,8 @@ export default function Home() {
       <section className="py-12">
         <div className="max-w-6xl mx-auto px-4">
           <h3 className="text-2xl font-bold text-gray-800 mb-8">
-            Latest Posts
+            Latest Posts on{" "}
+            <span className="uppercase">{import.meta.env.VITE_ENV}</span>
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
